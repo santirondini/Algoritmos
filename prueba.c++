@@ -35,6 +35,16 @@ int main()
         menu ();
         getch(c);
         do {
+            switch (c){
+                case 'a':{
+                    cout << "La suma de los numeros es: " << x + y + z << endl;
+                    break;
+                }
+                cas
+            }
+                break;
+            }
+
 
 
         } while ();
