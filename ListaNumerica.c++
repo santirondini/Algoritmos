@@ -14,6 +14,42 @@ struct Nodo{
     Nodo*sgte=NULL; 
 };
 
+// Verificación 
+
+bool estaEnLista(int x, Nodo*lista){
+    Nodo*aux = lista; 
+    while(aux){
+        if(aux->dato == x){
+            return true;
+        } else {
+            aux = aux->sgte;
+    }
+    }
+    return false; 
+}
+
+// Ordenamiento 
+
+Nodo* ordenarLista(Nodo*lista){
+    Nodo*aux=lista;
+    Nodo*aux2=lista;
+    int temp;
+    
+    while(aux){
+        aux2=aux->sgte;
+        while(aux2){
+            if(aux->dato > aux2->dato){
+                temp=aux->dato;
+                aux->dato=aux2->dato;
+                aux2->dato=temp;
+            }
+            aux2=aux2->sgte;
+        }
+        aux=aux->sgte;
+    }
+    return lista;
+}
+
 
 // Funciones de Obtención.
 
@@ -58,8 +94,7 @@ void agregarNumeroAlInicio(Nodo*&lista, int numero){
 
 // Sacar Numeros:
 
-
-void sacarUltimo(Nodo*& lista){
+void sacarUltimo(Nodo*&lista){
     Nodo* aux = lista;
     if(aux && aux->sgte){
         aux = obtenerAnteultimo(lista);
@@ -78,7 +113,26 @@ void sacarPrimero(Nodo*&lista){
 }
 
 
+void sacar(int numero, Nodo*&lista){
+    Nodo*aux=lista;
+    Nodo*anterior=lista;
+    
+    if(!estaEnLista(numero,lista)){
+        cout << "El numero no esta en la lista" << endl;
+        return;
+    }
+    else{
+    while(aux->dato != numero){
+        anterior=aux;
+        aux=aux->sgte;
+    }
+    anterior->sgte=aux->sgte;
+    delete aux;
+    }
+}
+
 // Funciones Para Mostrar
+
 void mostrarLista(Nodo*lista){
     Nodo*aux=lista;
     while(aux){
@@ -87,9 +141,16 @@ void mostrarLista(Nodo*lista){
     }
     cout << endl; 
 }
+
 void mostrarPosicionDe(Nodo*lista,int numero){
     Nodo*aux=lista;
     int posicion = 0; 
+       
+    if(!estaEnLista(numero,lista)){
+        cout << "El numero no esta en la lista" << endl;
+        return;
+    }
+    
     while(aux->dato != numero){
         aux=aux->sgte;
         posicion++; 
@@ -97,6 +158,7 @@ void mostrarPosicionDe(Nodo*lista,int numero){
 
     cout << "La posicion del numero " << numero << " es: " << posicion << endl;
 }
+
 
 // Menú: 
 
@@ -107,6 +169,8 @@ void menu (){
     cout << "d - Sacar primero" << endl;
     cout << "e - Sacar un x" << endl;
     cout << "f - Mostrar Lista" << endl;
+    cout << "g - Mostrar Posicion de un numero" << endl;
+    cout << "h - Ordenar Lista" << endl;
     cout << "Esc - Salir" << endl;
 }
 
@@ -119,7 +183,7 @@ int main()
         menu(); 
         do {
             op = getch();
-        } while (op != 'a' && op != 'b' && op != 'c' && op != 'd' && op != 'e' && op != 'f' && op != 27);
+        } while (op != 'a' && op != 'b' && op != 'c' && op != 'd' && op != 'e' && op != 'f' && op != 'g' && op != 'h' && op != 27);
 
         switch (op){
 
@@ -152,6 +216,16 @@ int main()
             case 'f': 
             mostrarLista(lista);
             break; 
+
+            case 'g':
+            cout << "Ingrese el numero" << endl;
+            cin >> x; 
+            mostrarPosicionDe(lista,x);
+
+            case 'h':
+            lista = ordenarLista(lista);
+            cout << "Lista ordeanda" << endl; 
+            break;
         } 
     cout << "Presione cualquier tecla para continuar" << endl;
     getch();
