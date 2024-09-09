@@ -10,10 +10,9 @@ struct Alumno {
     float promedio;
 };
 
-struct NodoAlumno {
-    Alumno info;
-    Materia*NodoMateria = NULL;
-    NodoAlumno*sgte=NULL;
+struct Nota{
+    float nota;
+    Nota*sgte=NULL;
 };
 
 struct Materia {
@@ -21,12 +20,11 @@ struct Materia {
     Nota*NodoNotas = NULL;
     Materia*sgte=NULL;
 };
-
-struct Nota{
-    float nota;
-    Nota*sgte=NULL;
+struct NodoAlumno {
+    Alumno info;
+    Materia* NodoMateria = NULL;
+    NodoAlumno*sgte=NULL;
 };
-
 
 // CARGAR ELEMENTOS: 
 
@@ -115,7 +113,7 @@ void cargarAlumnoEnLista (Alumno info, NodoAlumno*&lista){
     lista = nuevo;
 }
 
-void cargarNotaEnAlumno(string Alumno, string Materia, int nota, NodoAlumno*lista){
+void cargarNotaEnAlumno(string Alumno, string materia, int nota, NodoAlumno*lista){
     
     NodoAlumno*aux=lista; 
 
@@ -124,7 +122,7 @@ void cargarNotaEnAlumno(string Alumno, string Materia, int nota, NodoAlumno*list
         return;
     }
 
-    if(!verificacionMateria(Alumno, Materia, lista)){
+    if(!verificacionMateria(Alumno, materia, lista)){
         cout << "Materia no encontrada" << endl;
         return;
     }
@@ -133,16 +131,70 @@ void cargarNotaEnAlumno(string Alumno, string Materia, int nota, NodoAlumno*list
         aux = aux->sgte;
     }
 
-    Materia* auxm = aux->NodoMateria;
+    Materia*auxm = aux->NodoMateria;
 
-    while(auxm && auxm->nombreMateria != Materia){
+    while(auxm && auxm->nombreMateria != materia){
         auxm = auxm->sgte;
     }
 
+    Nota*nuevo = new Nota;
+    nuevo->nota = nota; 
+    nuevo->sgte = auxm->NodoNotas;
+}
 
+char menu (){
+    cout << " a - cargar alumno" << endl; 
+    cout << " b - cargar materia en alumno" << endl;
+    cout << " c - cargar nota en materia" << endl;
+    cout << " d - mostrar alumnos" << endl;
+    cout << " Esc - salir" << endl;
 
 }
 
 int main(){
 
+    NodoAlumno*listaAlumnos = NULL;
+    char op;
+    Alumno info;
+    string materia;
+    string nombreAlumno;
+    int nota;
+
+    do {
+        menu();
+        do{
+            op = getch();
+            tolower(op);
+        } while(op != 'a' && op != 'b' && op != 'c' && op != 'd' && op != 27);
+
+        switch (op){
+            
+            case 'a': 
+            cargarAlumno(info);
+            cargarAlumnoEnLista(info, listaAlumnos);
+            break; 
+
+            case 'b':
+            cout << "Nombre del alumno: " << endl;
+            cin >> nombreAlumno;
+            cout << "Nombre de la materia: " << endl;
+            cin >> materia;
+            cargarMateriaEnAlumno(materia, nombreAlumno, listaAlumnos);
+            break;
+
+            case 'c':
+            cout << "Nombre del alumno: " << endl;
+            cin >> nombreAlumno;
+            cout << "Nombre de la materia: " << endl;
+            cin >> materia;
+            cout << "Nota: " << endl;
+            cin >> nota;
+            cargarNotaEnAlumno(nombreAlumno, materia, nota, listaAlumnos);
+            break;
+        }
+
+    cout << "Presione cualquier tecla para continuar" << endl;
+    getch();
+    system("cls");  
+    } while(op!= 27);
 }
