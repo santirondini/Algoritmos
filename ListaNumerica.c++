@@ -144,7 +144,7 @@ void mostrarLista(Nodo*lista){
 
 void mostrarPosicionDe(Nodo*lista,int numero){
     Nodo*aux=lista;
-    int posicion = 0; 
+    int posicion = 1; 
        
     if(!estaEnLista(numero,lista)){
         cout << "El numero no esta en la lista" << endl;
