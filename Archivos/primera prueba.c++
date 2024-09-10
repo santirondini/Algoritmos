@@ -20,14 +20,14 @@ int main (){
     FILE *archivo;
     Alumno info; 
 
-    archivo = fopen("alumnos.txt", "wb+");
+    archivo = fopen("alumnos.txt", "rb+");
 
     if (!archivo) {
         archivo = fopen("alumnos.txt", "wb+");
     }
 
-fseek(archivo, 0, SEEK_SET);
-
+    fseek(archivo, 0, SEEK_SET);
+/*
    for(int i = 0; i < 2; i++) {
 
     cout << "Nombre: " << endl;
@@ -44,10 +44,11 @@ fseek(archivo, 0, SEEK_SET);
     fwrite(&info, sizeof(Alumno), 1, archivo);
 }
     
+*/
 
     fseek(archivo, 0, SEEK_SET);
 
-    while(fread(&info, sizeof(Alumno), 1, archivo)){
+    while(fread(&info, sizeof(Alumno), 1, archivo)) {
 
     cout << "Nombre: " << info.nombre << endl;
     cout << "Apellido: " << info.apellido << endl;
@@ -56,8 +57,7 @@ fseek(archivo, 0, SEEK_SET);
     
     }
 
-
-
+    fclose(archivo);
     
 }
 

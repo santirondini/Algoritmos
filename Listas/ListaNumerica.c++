@@ -2,11 +2,6 @@
 #include <math.h>
 #include <conio.h>
 
-// compilar: Fn + F6
-
-// compilar en otra terminal : Fn + F8
-
-
 using namespace std;
 
 struct Nodo{
