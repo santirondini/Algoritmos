@@ -34,62 +34,21 @@ void cargarPersona(Persona &p){
     limpiarBuffer();
 }
 
-void agregarNodo(Nodo*&lista, Persona p, FILE*archivo){
-    
+void agregarNodo(Nodo*&lista, Persona p){
     Nodo*nuevo = new Nodo;
     nuevo->info = p;
     nuevo->sgte = lista;
     lista = nuevo;
-
-    fwrite(&p, sizeof(Nodo), 1, archivo);
 }
-
-void mostrarLista(FILE*archivo){
-    Persona p;
-    fseek(archivo, 0, SEEK_SET);
-
-    while(fread(&p, sizeof(Persona), 1, archivo)) {
-        cout << "Nombre: " << p.nombre << endl;
-        cout << "Edad: " << p.edad << endl;
-        cout << "Altura: " << p.altura << endl;
-        cout << "----------------------------" << endl;
-    }
-}
-
 
 int main(){
 
-    Nodo*lista = NULL;
-    FILE*archivo; 
+    Nodo*lista = NULL; 
     Persona p;
+
     
-    archivo = fopen("personas.txt", "wb+");
-
-    if (!archivo) {
-        archivo = fopen("personas.txt", "wb+");
+    for(int i=0 ;i<3; i++){
+        cargarPersona(p);
+        agregarNodo(lista, p);
     }
-
-    fseek(archivo, 0, SEEK_SET);
-
-    cargarPersona(p);
-    agregarNodo(lista, p, archivo);
-
-    cout << "----------------------------" << endl;
-
-    cargarPersona(p);
-    agregarNodo(lista, p, archivo);
-
-    cout << "----------------------------" << endl;
-
-    cargarPersona(p);
-    agregarNodo(lista, p, archivo);
-
-    cout << "----------------------------" << endl;
-
-    mostrarLista(archivo);
-
-
-
-     
-
 }
