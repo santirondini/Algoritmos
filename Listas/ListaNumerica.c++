@@ -66,6 +66,26 @@ Nodo* obtenerAnteultimo(Nodo*lista){
 
 // Agregar Numeros:
 
+void insertarOrdenado(Nodo*& lista, int valor) {
+    Nodo* nuevo = new Nodo(); // Crear un nuevo nodo
+    nuevo->dato = valor;
+
+    // Si la lista está vacía o el valor debe ir al inicio
+    if (lista == NULL || lista->dato >= valor) {
+        nuevo->sgte = lista;
+        lista = nuevo;
+    } else {
+        // Encontrar la posición correcta
+        Nodo*aux = lista;
+        while (aux->sgte != NULL && aux->sgte->dato < valor) {
+            aux = aux->sgte;
+        }
+        // Insertar el nuevo nodo
+        nuevo->sgte = aux->sgte;
+        aux->sgte = nuevo;
+    }
+}
+
 void agregarNumeroFinal(Nodo*&lista, int numero){
     Nodo*nuevo = new Nodo();
     nuevo->dato = numero;

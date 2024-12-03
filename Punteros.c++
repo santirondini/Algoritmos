@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 int main() {
 
 int *p;
@@ -50,6 +51,7 @@ int *r;
 r = new int[5]; 
 
 cout << "r = new int[5];" << endl; 
+
 cout << "r :" << r << endl;
 cout << "*r :" << *r << endl;
 cout << "&r :" << &r << endl;
@@ -59,9 +61,9 @@ cout << endl;
 
 Haciendo el cout antes de asignar los valores:
 
-r :0x1067f70
-*r :17201888
-&r :0x62fef8
+r : 0x1067f70
+*r : 17201888
+&r : 0x62fef8
 
 Haciendo el cout después de asignar los valores:
 
@@ -84,6 +86,38 @@ cout << "r :" << r << endl;
 cout << "*r :" << *r << endl;
 cout << "&r :" << &r << endl;
 cout << endl;
+
+//----------------------------------------
+
+int z;
+int *s;
+int **t;
+
+z = 25;
+s = &z;
+t = &s;
+
+cout << "z = 25;" << endl;
+cout << "s = &z;" << endl;
+cout << "t = &s;" << endl;
+cout << endl;
+
+cout << "z = " << z << endl;
+cout << "&z = " << &z << endl;
+cout << endl;
+
+cout << "s = " << s << endl;
+cout << "*s = " << *s << endl;
+cout << "&s = " << &s << endl;
+cout << endl;
+
+cout << "t = " << t << endl;
+cout << "*t = " << *t << endl;
+cout << "**t = " << **t << endl;
+cout << "&t = " << &t << endl;
+cout << endl;
+
+
 
 /* 
 Errores: 

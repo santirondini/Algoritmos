@@ -25,27 +25,7 @@ int main (){
     if (!archivo) {
         archivo = fopen("alumnos.txt", "wb+");
     }
-
-    fseek(archivo, 0, SEEK_SET);
-/*
-   for(int i = 0; i < 2; i++) {
-
-    cout << "Nombre: " << endl;
-    cin.getline(info.nombre, 20);
-
-    cout << "Apellido: " << endl;
-    cin.getline(info.apellido, 20);
-
-    cout << "Edad: " << endl;
-    cin >> info.edad;
-
-    limpiarBuffer();    
-
-    fwrite(&info, sizeof(Alumno), 1, archivo);
-}
     
-*/
-
     fseek(archivo, 0, SEEK_SET);
 
     while(fread(&info, sizeof(Alumno), 1, archivo)) {
