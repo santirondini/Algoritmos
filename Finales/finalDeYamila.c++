@@ -99,6 +99,7 @@ int posicionDeCodigo(int codigo, Reserva vector[]) {
         }
         i++;
     }
+    return -1;
 }
 
 void actualizarHotel(Reserva reservaDeVector, NodoReservas reserva){
@@ -133,10 +134,12 @@ void insertarOrdenadoEnLista(Producto producto, NodoProducto*&lista) {
     NodoProducto* nuevo = new NodoProducto();
     nuevo->info = producto;
 
+    /*Si la lista esta vacia o el codigo del primer elemento es mayor al cual queremos insertar. Agrega primero*/
     if (lista == NULL || lista->info.codigoProducto >= producto.codigoProducto) {
         nuevo->sgte = lista;
         lista = nuevo;
     } else {
+        /*Mientras el siguiente de la lista no sea NULL y ese codigo esa menor al cual queremos insertar, que se mueva el aux*/
         NodoProducto*aux = lista;
         while (aux->sgte != NULL && aux->sgte->info.codigoProducto < producto.codigoProducto) {
             aux = aux->sgte;

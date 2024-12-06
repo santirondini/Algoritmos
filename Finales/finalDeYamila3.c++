@@ -24,16 +24,13 @@ int recursivo(int n){
     return n + recursivo(n-1);
 }
 
-
-
 int main() {
 
     Nodo*ListaProductos = NULL; 
     Producto vector[50];
     
 
-    
-    
+
     /*int arr[] = {10, 20, 30, 40};
     int *p = arr;
     cout << *(p+2) << endl;

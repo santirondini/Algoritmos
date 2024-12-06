@@ -79,7 +79,7 @@ int buscarAlumno(Nota vector[], int legajoAbuscar) {
     while(i < 1500 && vector[i].legajo != legajoAbuscar){
         i++;
     }
-    return i; 
+    return i; // retorna la posición del vector donde se encuentra el alumno con ese legajo  
 }
 
 void actualizarAlumno(Nota alumno, NodoNota*lista){
@@ -112,8 +112,8 @@ void agregarNumero(Nodo*&lista,int numero){
 
 void cargarVector(Nota vector[]){
     srand(time(0));
-    for (int i = 0; i < 15; ++i) {
-        vector[i].legajo = rand() % 100;
+    for (int i = 0; i < 7; ++i) {
+        vector[i].legajo = rand() % 10;
         vector[i].nota1parcial = rand() % 10;
         vector[i].nota2parcial = rand() % 10;
     }   
@@ -121,9 +121,9 @@ void cargarVector(Nota vector[]){
 
 void cargarLista(NodoNota*&lista){
     srand(time(0));
-    for (int i = 0; i < 15; ++i) {
+    for (int i = 0; i < 7; ++i) {
         NodoNota*nuevo = new NodoNota();
-        nuevo->legajo = rand() % 100;
+        nuevo->legajo = rand() % 10;
         nuevo->notaRecu2parcial = rand() % 10;
         nuevo->sgte = lista;
         lista = nuevo;
@@ -131,7 +131,7 @@ void cargarLista(NodoNota*&lista){
 }
 
 void mostraVector(Nota vector[]){
-    for (int i = 0; i < 15; ++i) {
+    for (int i = 0; i < 7; ++i) {
         cout << "Legajo: " << vector[i].legajo << " | Nota 1er Parcial: " << vector[i].nota1parcial << " | Nota 2do Parcial: " << vector[i].nota2parcial << endl;
     }
 }
@@ -146,7 +146,7 @@ void mostrarListaDeNotas(NodoNota*lista){
 
 int main() {
 
-    Nota vector[15]; // debe ser 1500
+    Nota vector[7]; // debe ser 1500
     NodoNota* lista = NULL;
 
     cargarVector(vector);
