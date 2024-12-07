@@ -63,7 +63,7 @@ void trabajosAprobados(Trabajo* trabajos[]){
         cout<<"Trabajos aprobados de la categoria "<<i+1<<":"<<endl;
         Trabajo* aux = trabajos[i];
         while(aux!=NULL){
-            if(aux->resultado=="Aprobado totalmente"){ //strcmp
+            if(aux->resultado == "Aprobado totalmente"){ //strcmp
                 cout<<"Titulo: "<<aux->titulo<<" - ";
                 cout<<endl;
             }

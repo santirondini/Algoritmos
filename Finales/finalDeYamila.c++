@@ -209,10 +209,6 @@ int main() {
     */
 
    //Ejercicio 2
-
-   NodoReservas*lista = NULL;
-   Reserva vector[50];
-
    // EJERICICIO 3
 
 }

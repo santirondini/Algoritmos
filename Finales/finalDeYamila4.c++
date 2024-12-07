@@ -6,11 +6,62 @@
 
 using namespace std;
 
+
 struct Nodo{
     int info;
     Nodo*sgte=NULL;
 };
 
+void agregar(Nodo*&lista,int valor){
+    Nodo*nuevo = new Nodo();
+    nuevo->info = valor; 
+    nuevo->sgte = lista;
+    lista = nuevo;
+}
+
+Nodo* interseccion(Nodo* lista1, Nodo* lista2) {
+    Nodo* listaInterseccion = NULL;
+    Nodo* aux1 = lista1;
+    Nodo* aux2 = lista2;
+
+    while (aux1) {
+        aux2 = lista2;
+        while (aux2) {
+            if (aux1->info == aux2->info) {
+                agregar(listaInterseccion, aux1->info);
+                break;
+            }
+            aux2 = aux2->sgte;
+        }
+        aux1 = aux1->sgte;
+    }
+    return listaInterseccion;
+}
+
+/*
+Nodo* interseccionEntreDosListas(Nodo*lista1,Nodo*lista2) {
+
+    Nodo*listaInterseccion = NULL;
+    Nodo*aux1 = lista1;
+    Nodo*aux2 = lista2;
+
+    while(aux1) {
+        aux2 = lista2;
+        while(aux2) {
+            if(aux1->info == aux2->info) {
+                agregar(listaInterseccion, aux1->info);
+                aux1 = aux1->sgte;
+            }
+            else{
+                aux2 = aux2->sgte; 
+            }
+        
+        }
+        aux1 = aux1 ->sgte;
+    }
+    return listaInterseccion;
+}
+*/
 void ordenarLista(Nodo*&lista){
 
     Nodo*aux1 = lista;
@@ -32,14 +83,8 @@ void ordenarLista(Nodo*&lista){
 }
 
 
-void agregar(Nodo*&lista,int valor){
-    Nodo*nuevo = new Nodo();
-    nuevo->info = valor; 
-    nuevo->sgte = lista;
-    lista = nuevo;
-}
 
-Nodo*pasarDeVaL(int v[], int tam) {
+Nodo* pasarDeVaL(int v[], int tam) {
     int t = 0;
     Nodo*lista = NULL;
     while(t<tam){
@@ -79,9 +124,9 @@ void mostraLista(Nodo*lista){
     }
 }
 
-void cargarListaAleatoria(Nodo*& lista) {
+void cargarListaAleatoria(Nodo*& lista, int tam) {
     srand(time(0));
-    for (int i = 0; i < 7; ++i) {
+    for (int i = 0; i < tam; ++i) {
         int valor = rand() % 25; // Genera valores aleatorios entre 0 y 99
         agregar(lista, valor);
     }
@@ -97,19 +142,24 @@ void mostrarvector(int vec[], int tam) {
 int main() {
 
     int vec[10] = {1,5,7,9,2,1,6,7,5,3};
-    Nodo*lista = NULL;
+    Nodo*lista1 = NULL;
+    Nodo*lista2 = NULL;
     
-    cargarListaAleatoria(lista);
+    cargarListaAleatoria(lista1,10);
 
-    cout << "LISTA :" << endl;
-    mostraLista(lista);
+    cout << "LISTA 1 :" << endl;
+    mostraLista(lista1);
     cout << endl;
 
-    cout << "VECTOR :" << endl;
-    mostraLista(pasarDeVaL(vec,10));
+    cargarListaAleatoria(lista2,5);
+
+    cout << "LISTA 2 : " << endl;
+    mostraLista(lista2);
     cout << endl;
 
-    cout << "LISTA + VECTOR ORDENADO : " << endl;
-    mostraLista(listaDeColaYVector(vec,10,lista));
+    Nodo*lista3 = interseccion(lista1,lista2);
+
+    mostraLista(lista3);
+
 
 }

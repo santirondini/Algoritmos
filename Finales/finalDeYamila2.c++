@@ -74,6 +74,41 @@ struct NodoNota {
     NodoNota* sgte = NULL;
 };
 
+// Funciones Generadoras
+
+void cargarVectorConLegajosDistintos(Nota vector[], int tam) {
+    srand(time(0));
+    bool legajoRepetido;
+    for (int i = 0; i < tam; ++i) {
+        do {
+            legajoRepetido = false;
+            vector[i].legajo = rand() % 10 + 1; // Genera legajos entre 1 y 10
+            for (int j = 0; j < i; ++j) {
+                if (vector[i].legajo == vector[j].legajo) {
+                    legajoRepetido = true;
+                    break;
+                }
+            }
+        } while (legajoRepetido);
+        vector[i].nota1parcial = rand() % 10;
+        vector[i].nota2parcial = rand() % 10;
+    }
+}
+
+void mostraVector(Nota vector[]){
+    for (int i = 0; i < 7; ++i) {
+        cout << "Legajo: " << vector[i].legajo << " | Nota 1er Parcial: " << vector[i].nota1parcial << " | Nota 2do Parcial: " << vector[i].nota2parcial << endl;
+    }
+}
+
+void mostrarListaNota(NodoNota* lista) {
+    NodoNota* aux = lista;
+    while (aux) {
+        cout << "Legajo: " << aux->legajo << " | Nota Recuperatorio 2do Parcial: " << aux->notaRecu2parcial << endl;
+        aux = aux->sgte;
+    }
+}
+
 void crearListaNota(NodoNota*& lista) {
     srand(time(0));
     bool legajoRepetido;
@@ -139,39 +174,6 @@ void agregarNumero(Nodo*&lista,int numero){
     nuevo->sgte = lista;
     lista = nuevo; 
 
-}
-
-void cargarVectorConLegajosDistintos(Nota vector[], int tam) {
-    srand(time(0));
-    bool legajoRepetido;
-    for (int i = 0; i < tam; ++i) {
-        do {
-            legajoRepetido = false;
-            vector[i].legajo = rand() % 10 + 1; // Genera legajos entre 1 y 10
-            for (int j = 0; j < i; ++j) {
-                if (vector[i].legajo == vector[j].legajo) {
-                    legajoRepetido = true;
-                    break;
-                }
-            }
-        } while (legajoRepetido);
-        vector[i].nota1parcial = rand() % 10;
-        vector[i].nota2parcial = rand() % 10;
-    }
-}
-
-void mostraVector(Nota vector[]){
-    for (int i = 0; i < 7; ++i) {
-        cout << "Legajo: " << vector[i].legajo << " | Nota 1er Parcial: " << vector[i].nota1parcial << " | Nota 2do Parcial: " << vector[i].nota2parcial << endl;
-    }
-}
-
-void mostrarListaNota(NodoNota* lista) {
-    NodoNota* aux = lista;
-    while (aux) {
-        cout << "Legajo: " << aux->legajo << " | Nota Recuperatorio 2do Parcial: " << aux->notaRecu2parcial << endl;
-        aux = aux->sgte;
-    }
 }
 
 int main() {
