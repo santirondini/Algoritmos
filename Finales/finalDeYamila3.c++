@@ -27,7 +27,7 @@ int recursivo(int n){
 int main() {
 
     Nodo*ListaProductos = NULL; 
-    Producto vector[50];
+    Producto STOCK[50];
     
 
 
