@@ -68,7 +68,7 @@ void cargarValoresEnLista(Nodo*& lista, int semillaExtra ) {
 
 void mostrarLista(Nodo*lista){
     Nodo*aux=lista;
-    while(aux){
+    while(auxa){
         cout<<aux->dato<<" | ";
         aux=aux->sgte;
     }

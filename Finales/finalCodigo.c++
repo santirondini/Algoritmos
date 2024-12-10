@@ -13,7 +13,7 @@ int main(){
     int w; 
     p = new int();
     w = 85;
-    *p = w; 
+    p = &w; 
     y = p; 
     w++;
     cout << *y << endl; // muestra 85
