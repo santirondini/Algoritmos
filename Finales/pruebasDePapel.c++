@@ -7,6 +7,8 @@
 
 using namespace std;
 
+int salarioMujeres(int salario)
+
 
 struct Nodo {
     int info;
