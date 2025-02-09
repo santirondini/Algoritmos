@@ -59,7 +59,7 @@ Nodo*listaOrdenada(Nodo*pila,Nodo*cola){
     return nuevaLista;
 }
 
-
+// EJERCICIO 2
 struct Nota {
 
     int legajo;
