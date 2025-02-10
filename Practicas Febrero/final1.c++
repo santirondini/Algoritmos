@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 struct Vector {
 
     int legajo; 
@@ -48,7 +47,7 @@ void actualizarVector(Nodo*listaDeNotas, Vector vectorDeAlumnos[]) {
     actualizarNota(vectorDeAlumnos[posicion],aux->notaDeRecuperatorio2doParcial);
     aux = aux->sgte;
     }
-} 
+}
 
 int main() {
 
